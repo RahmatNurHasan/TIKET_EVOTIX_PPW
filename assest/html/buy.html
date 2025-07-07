@@ -34,7 +34,7 @@
                         <a class="nav-link active" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="list-event.html">Event</a>
+                        <a class="nav-link" href="#event">Event</a>
                     </li>
 
                     <!-- Dropdown Kategori -->
@@ -93,8 +93,8 @@
                         role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 
                         <!-- Gambar profil -->
-                        <img src="../img/login.png" alt="" class="rounded-circle" width="25" height="25">
-                        <span></span>
+                        <img src="../img/login.png" alt="Rahmat" class="rounded-circle" width="25" height="25">
+                        <span>Rahmat</span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
@@ -426,26 +426,26 @@
     </footer>
 
 <script>
-  let ticketPrice = 55000;
+  let ticketPrice = selectedEvent.price;        //penyesuaikan harga dari halaman sebelumnya
   const promoCodes = {
-    "DISKON10": 0.10,
-    "HEMAT20": 0.20,
+    "DISKON10": 0.10,           
+    "HEMAT20": 0.20,        //menambahkan diskon tiket
     "EVENT70": 0.70
   };
 
-  const ticketInput = document.getElementById('ticket-amount');
-  const visitorFormsContainer = document.getElementById('visitor-forms');
+  const ticketInput = document.getElementById('ticket-amount');         //untuk menginput tiket
+  const visitorFormsContainer = document.getElementById('visitor-forms');   //form data pengunjung
 
   function applyDiscount(total) {
-    const code = document.getElementById('discount-code').value.trim().toUpperCase();
-    const discount = promoCodes[code] || 0;
-    const discountedTotal = total - (total * discount);
+    const code = document.getElementById('discount-code').value.trim().toUpperCase();   //pembaca kode diskon
+    const discount = promoCodes[code] || 0;         
+    const discountedTotal = total - (total * discount);     //jumlah * harga
     const promoMsg = document.getElementById('promo-message');
 
     if (code && discount > 0) {
       promoMsg.textContent = `Kode diskon diterapkan: ${code} (${discount * 100}%)`;
       promoMsg.classList.remove('text-danger');
-      promoMsg.classList.add('text-success');
+      promoMsg.classList.add('text-success');           //digunakan untuk mengakses elemen HTML berupa pesan
     } else if (code) {
       promoMsg.textContent = `Kode diskon tidak valid.`;
       promoMsg.classList.remove('text-success');
@@ -459,8 +459,8 @@
 
   function updateTotal() {
     const count = parseInt(ticketInput.value) || 1;
-    const rawTotal = count * ticketPrice;
-    const { discountedTotal, discountPercent } = applyDiscount(rawTotal);
+    const rawTotal = count * ticketPrice;           //mengambil jumlah tiket 
+    const { discountedTotal, discountPercent } = applyDiscount(rawTotal);       //discountpercent = menyimpan diskon dlam bntuk desimal
 
     document.getElementById('ticket-count').textContent = count;
     document.getElementById('subtotal').textContent = `Rp ${rawTotal.toLocaleString('id-ID')}`;
@@ -478,7 +478,7 @@
   function createVisitorForm(index) {
     return `
       <div class="card p-3 mb-4">
-        <h6>Pengunjung ${index + 1}</h6>
+        <h6>Pengunjung ${index + 1}</h6>                
         ${index === 0 ? `
         <div class="form-check form-switch mb-3">
           <input class="form-check-input" type="checkbox" id="sameAsBuyer">
@@ -493,10 +493,10 @@
           <input type="email" class="form-control" id="visitor-email-${index}">
         </div>
       </div>`;
-  }
+  }         //berisi  satu form pengunjung
 
   function renderVisitorForms() {
-    const count = parseInt(ticketInput.value) || 1;
+    const count = parseInt(ticketInput.value) || 1;         //membuat form dari bnyak jmlh tiket
     visitorFormsContainer.innerHTML = '';
     for (let i = 0; i < count; i++) {
       visitorFormsContainer.innerHTML += createVisitorForm(i);
@@ -505,7 +505,7 @@
     const checkbox = document.getElementById('sameAsBuyer');
     if (checkbox) {
       checkbox.addEventListener('change', function () {
-        const name = document.getElementById('buyer-name').value;
+        const name = document.getElementById('buyer-name').value;           //checkbox (sama dengan pembeli)
         const email = document.getElementById('buyer-email').value;
         document.getElementById('visitor-name-0').value = this.checked ? name : '';
         document.getElementById('visitor-email-0').value = this.checked ? email : '';
@@ -513,7 +513,7 @@
     }
   }
 
-  // Tombol + dan -
+  // Tombol + dan - 
   document.getElementById('btn-increase').addEventListener('click', () => {
     ticketInput.value = parseInt(ticketInput.value) + 1;
     updateTotal();
@@ -530,17 +530,17 @@
   });
 
   ticketInput.addEventListener('input', () => {
-    updateTotal();
+    updateTotal();          //mengupdate diskon yang diinputkan user
     renderVisitorForms();
   });
 
   document.getElementById('discount-code').addEventListener('input', updateTotal);
 
-  // Ambil data event
+  
   const selectedEvent = JSON.parse(localStorage.getItem("selectedEvent"));
   if (selectedEvent) {
     document.getElementById("event-title").textContent = selectedEvent.title;
-    document.getElementById("event-date").textContent = selectedEvent.date;
+    document.getElementById("event-date").textContent = selectedEvent.date;     // Ambil data event ke dalam form
     document.getElementById("event-location").textContent = selectedEvent.location;
 
     let imagePath = selectedEvent.image;
@@ -552,19 +552,19 @@
     ticketPrice = selectedEvent.price;
   }
 
-  // Tombol ke pembayaran
-  document.getElementById("to-payment").addEventListener("click", function () {
+  // Tombol pembayaran
+  document.getElementById("to-payment").addEventListener("click", function () {     //mengambil data pembeli dan jumlah tiket
     const buyerName = document.getElementById("buyer-name").value;
     const buyerEmail = document.getElementById("buyer-email").value;
     const ticketCount = ticketInput.value;
-    const { discountedTotal } = applyDiscount(parseInt(ticketCount) * ticketPrice);
+    const { discountedTotal } = applyDiscount(parseInt(ticketCount) * ticketPrice);     //total akhir
 
     const selectedEventData = {
       title: document.getElementById("event-title").textContent,
       date: document.getElementById("event-date").textContent,
       time: "14:00 WIB",
       location: document.getElementById("event-location").textContent,
-      image: selectedEvent.image, // ← langsung nama file seperti "poster.jpg"
+      image: selectedEvent.image, 
       price: ticketPrice
     };
 
