@@ -132,8 +132,10 @@
 
 <body>
   <!-- TENTANG EVOTIX -->
+  <!-- === TENTANG EVOTIX: Profil & Fitur Utama === -->
   <div class="container-fluid pt-5 pb-5 bg-white">
     <div class="container">
+      <!-- Judul utama dengan animasi AOS (fade-up) -->
       <h2 class="display-3 text-center fw-bold text-gradient mb-3" id="tentang" data-aos="fade-up">
         EVOTIX.ID
       </h2>
@@ -141,8 +143,10 @@
         Temukan dunia event dalam satu genggaman.
       </p>
 
+      <!-- 2 Kolom: Deskripsi & Gambar Logo -->
       <div class="row align-items-center g-5">
         <div class="col-md-7" data-aos="fade-right" data-aos-duration="1000">
+          <!-- Deskripsi platform -->
           <p class="deskripsi mb-4">
             <strong>Evotix</strong> adalah platform pemesanan tiket online untuk berbagai acara seperti konser, seni,
             komunitas,
@@ -160,6 +164,7 @@
           </p>
         </div>
 
+        <!-- Logo EVOTIX animasi hover & naik-turun -->
         <div class="col-md-5 text-center" data-aos="zoom-in">
           <div class="p-3 rounded bg-white d-inline-block drop-shadow">
             <img src="../img/evotix.png" class="img-fluid logo-img drop-shadow-logo" alt="Logo Evotix" />
@@ -170,13 +175,16 @@
   </div>
 
 
+  <!-- === INFINITE SCROLL TEXT === -->
   <!-- Infinite Scroll -->
   <div class="scroll-wrapper">
     <div class="scroll-content">
+       <!-- Teks berjalan otomatis (loop) -->
       <span>EVOTIX.ID - Platform Event Masa Kini</span>
       <span>Tiket Online Konser, UMKM, Festival, Komunitas</span>
       <span>Pencarian Event & Info Terkini</span>
       <span>Pembayaran Mudah dan E-Ticket Otomatis</span>
+       <!-- Diulang untuk efek tanpa henti -->
       <span>EVOTIX.ID - Platform Event Masa Kini</span>
       <span>Tiket Online Konser, UMKM, Festival, Komunitas</span>
       <span>Pencarian Event & Info Terkini</span>
@@ -188,7 +196,7 @@
   </style>
 
 
-
+<!-- === KENAPA MEMILIH EVOTIX: 4 Fitur Utama === -->
   <!-- Kenapa Memilih Evotix -->
   <div class="container-fluid  py-5">
     <div class="container">
@@ -198,12 +206,14 @@
         </p>
       </div>
       <div class="row g-4">
+        <!-- Icon box: Aman & Terpercaya -->
         <div class="col-md-6 col-lg-3 text-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="icon-box p-4 bg-white shadow-sm rounded-4 h-100">
             <i class="zmdi zmdi-shield-check zmdi-hc-3x text-secorny mb-3"></i>
             <h6 class="fw-bold">Aman & Terpercaya</h6>
             <p class="text-muted small">Kami jamin keamanan data dan transaksi kamu 100% terlindungi.</p>
           </div>
+           <!-- Icon box lainnya diikuti dengan gaya serupa -->
         </div>
         <div class="col-md-6 col-lg-3 text-center" data-aos="zoom-in" data-aos-delay="200">
           <div class="icon-box p-4 bg-white shadow-sm rounded-4 h-100">
@@ -263,6 +273,7 @@
   }
 </style>
 <script>
+  // Script animasi counter naik otomatis
   const counters = document.querySelectorAll('.counter');
   counters.forEach(counter => {
     counter.innerText = '0';
@@ -282,11 +293,13 @@
 </script>
 
 
+  <!-- === LOGO MITRA (Marquee Loop Horizontal) === -->
 <section class="trusted-by-section">
   <div class="container text-center">
     <h3 class="text-gray-custom">Telah Dipercaya Oleh</h3>
     <div class="logo-marquee-wrapper">
       <div class="logo-track">
+        <!-- Logo partner ditampilkan dua kali agar efek loop lancar -->
         <!-- Logo utama -->
         <img src="../img/evotix.png" alt="Evotix" />
         <img src="../img/Logo Primer - Horizontal.png" alt="Partner 1" />
@@ -294,7 +307,7 @@
         <img src="../img/SI.png" alt="Partner 3" />
         <img src="../img/Program Studi S1 Sistem Informasi.png" alt="Partner 4" />
         <img src="../img/logo-himasi.png" alt="Partner 5" />
-
+         <!-- Diulang -->
         <!-- Duplikasi untuk loop -->
         <img src="../img/evotix.png" alt="Evotix" />
         <img src="../img/Logo Primer - Horizontal.png" alt="Partner 1" />
@@ -307,6 +320,7 @@
   </div>
 </section>
 
+  <!-- === TESTIMONI PENGGUNA === -->
   <!-- Testimoni Pengguna -->
   <div class="container-fluid  py-5">
     <div class="container">
@@ -314,7 +328,7 @@
         <h3 class="fw-bold text-gradient">Apa Kata Mereka?</h3>
         <p class="text-muted">Pengalaman nyata dari pengguna Evotix yang puas.</p>
       </div>
-
+          <!-- Testimoni: Card per user -->
       <div class="row g-4 justify-content-center">
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="p-4 bg-white rounded shadow-sm h-100">
@@ -329,7 +343,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Testimoni lainnya diikuti format sama -->
         <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
           <div class="p-4 bg-white rounded shadow-sm h-100">
             <p class="text-muted">“Saya pakai Evotix buat jualan tiket konser lokal. Sistemnya mudah dan penjualannya
@@ -361,11 +375,13 @@
     </div>
   </div>
 
+
+  <!-- === TIM KAMI === -->
   <!-- Team Section -->
   <div class="container tim-kami">
     <div class="row mb-4">
       <div class="col-12 text-center">
-        
+            <!-- Card anggota tim -->
 <h3 class="top-sep fw-bold text-gray-custom">Meet Our Experts</h3>
         <p class="text-muted">
           Kami adalah tim kreatif dan berdedikasi di balik Evotix, membangun pengalaman terbaik bagi pengguna.
@@ -393,7 +409,7 @@
           </div>
         </div>
       </div>
-
+         <!-- Anggota lainnya mengikuti format di atas -->
       <!-- Member 2 -->
       <div class="col-md-6 col-lg-4 mb-30">
         <div class="team-item">
