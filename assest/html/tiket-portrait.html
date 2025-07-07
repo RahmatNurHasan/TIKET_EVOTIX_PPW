@@ -111,8 +111,8 @@
 </div>
 
 <!-- Script -->
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>  //digunakan untuk menyisipkan library atau pihak ketiga dan pada script ini digunakan untuk membuat QR secara otomatis
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> //digunakan untuk Mengambil data event dari localStorage (sudah disimpan sebelumnya saat user beli tiket). Kalau tidak ada, gunakan data default.
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>  <!-- digunakan untuk menyisipkan library atau pihak ketiga dan pada script ini digunakan untuk membuat QR secara otomatis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> <!-- digunakan untuk Mengambil data event dari localStorage (sudah disimpan sebelumnya saat user beli tiket). Kalau tidak ada, gunakan data default. -->
 <script>
   const eventData = JSON.parse(localStorage.getItem("selectedEvent")) || {
     title: "Judul Tidak Ada",
