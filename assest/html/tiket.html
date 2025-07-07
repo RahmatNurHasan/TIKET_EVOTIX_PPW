@@ -140,34 +140,34 @@
 </div>
 
 <!-- Script -->
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js">    //digunakan untuk menyisipkan library atau pihak ketiga dan pada script ini digunakan untuk membuat QR secara otomatis</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">   // dan untuk halaman ini digunakan untuk mengubah elemen HTML menjadi PDF atau mengunduh tiket sebagai PDF, dan dapat megunduh secara otomatis</script>
 <script>
-  const eventData = JSON.parse(localStorage.getItem("selectedEvent")) || {
+  const eventData = JSON.parse(localStorage.getItem("selectedEvent")) || {   //digunakan untuk mengambil data dari halaman sebelumnya
     title: "Judul Tidak Ada",
     date: "-",
     time: "-",
     location: "-",
     image: "poster-default.jpg"
   };
-  const ticketCode = "EVT-" + Math.random().toString(36).substr(2, 8).toUpperCase();
-  const verifyCode = Math.random().toString(36).substr(2, 6).toUpperCase();
+  const ticketCode = "EVTX-" + Math.random().toString(36).substr(2, 8).toUpperCase();    // digunakan untuk memberikan kode random dan keamanan tiket
+  const verifyCode = Math.random().toString(36).substr(2, 6).toUpperCase();   //toString digunakan untuk mengubah angka menjadi teks dengan sistem bilangan basis (36), dan substr (2,8) digunakan untuk menghilangkan 2 karakter diawal dan mengambil 8 karakter setelahnya toUpperCase() digunakan untuk mengubah huruf kecil menjadi besar, supaya terlihat menjadi kode resmi
   document.getElementById("event-title").textContent = eventData.title;
   document.getElementById("event-date").textContent = eventData.date;
   document.getElementById("event-time").textContent = eventData.time;
-  document.getElementById("event-location").textContent = eventData.location;
+  document.getElementById("event-location").textContent = eventData.location;             // digunakan untuk menyisipkan data dari halaman detail event
   document.getElementById("ticket-code").textContent = ticketCode;
   document.getElementById("verify-code").textContent = verifyCode;
-  document.getElementById("poster-img").src = `../img/${eventData.image}`;
+  document.getElementById("poster-img").src = `../img/${eventData.image}`; // digunakan untuk mengatur gambar event
 
   document.getElementById("print-time").textContent = new Date().toLocaleString("id-ID", {
-    weekday: "long", year: "numeric", month: "long", day: "numeric",
+    weekday: "long", year: "numeric", month: "long", day: "numeric",                // digunakan untuk menampilkan waktu cetak pada tiket
     hour: "2-digit", minute: "2-digit", second: "2-digit"
   });
 
   new QRCode(document.getElementById("qrcode"), {
     text: ticketCode + "-" + verifyCode,
-    width: 80,
+    width: 80,                                                //digunakan untuk generate qr dari kode tiket dan verikasi
     height: 80,
     colorDark: "#000",
     colorLight: "#fff",
@@ -178,7 +178,7 @@
     html2pdf().from(document.getElementById("ticket")).set({
       margin: 10,
       filename: `e-tiket-${ticketCode}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
+      image: { type: 'jpeg', quality: 0.98 },         // digunakan untuk mengubah tiket menjadi pdf, setelah tiket disimpan, otomatis tercetak
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
     }).save().then(() => {
@@ -186,9 +186,9 @@
     });
   }, 800);
 
-  document.getElementById("print-btn").addEventListener("click", () => window.print());
+  document.getElementById("print-btn").addEventListener("click", () => window.print());       //digunakan untuk cetak manual, dan akan langsung dicetak
   function toggleDarkMode() {
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark");             //digunakan untuk mengubah tampilan menjadi gelap/terang
   }
 </script>
 </body>
