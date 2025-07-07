@@ -33,7 +33,7 @@
                         <a class="nav-link active" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="list-event.html">Event</a>
+                        <a class="nav-link" href="#event">Event</a>
                     </li>
 
                     <!-- Dropdown Kategori -->
@@ -92,8 +92,8 @@
                         role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 
                         <!-- Gambar profil -->
-                        <img src="../img/login.png" alt="" class="rounded-circle" width="25" height="25">
-                        <span></span>
+                        <img src="../img/login.png" alt="Rahmat" class="rounded-circle" width="25" height="25">
+                        <span>Rahmat</span>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
@@ -409,38 +409,38 @@
         </div>
     </footer>
   <script>
-    const selectedEvent = JSON.parse(localStorage.getItem("selectedEvent")) || {};
-    const ticketCount = parseInt(localStorage.getItem("ticketCount")) || 1;
-    const finalTotal = parseInt(localStorage.getItem("finalTotal")) || (selectedEvent.price || 0) * ticketCount;
+    const selectedEvent = JSON.parse(localStorage.getItem("selectedEvent")) || {};  //JSON.parse(...) → ubah data dari teks menjadi objek JavaScript.   selectedEvent = data event yang dipilih (nama, harga, dll).
+    const ticketCount = parseInt(localStorage.getItem("ticketCount")) || 1;         //localStorage.getItem(...) digunakan untuk mengambil data dari penyimpanan browser.  ticketCount = jumlah tiket yang dipilih (default 1).
+    const finalTotal = parseInt(localStorage.getItem("finalTotal")) || (selectedEvent.price || 0) * ticketCount;        //digunakan untuk menghitung jumlah tiket * dengan harga tiket
 
     // Tampilkan ringkasan
-    document.getElementById("summary-title").textContent = selectedEvent.title || "Nama Event";
+    document.getElementById("summary-title").textContent = selectedEvent.title || "Nama Event";                     //digunakan menampilkan summary tiket
     document.getElementById("summary-ticket-count").textContent = ticketCount;
     document.getElementById("summary-total").textContent = `Rp ${finalTotal.toLocaleString('id-ID')}`;
 
     const paymentRadios = document.querySelectorAll('input[name="payment-method"]');
     const summaryMethod = document.getElementById("summary-method");
-
+                                                                                                                    //digunakan untuk metode pembayaran untuk dipilih salah satu
     paymentRadios.forEach(radio => {
       radio.addEventListener('change', () => {
         summaryMethod.textContent = document.querySelector('input[name="payment-method"]:checked').value;
       });
     });
 
-    document.getElementById("confirm-button").addEventListener("click", () => {
-      const method = document.querySelector('input[name="payment-method"]:checked').value;
+    document.getElementById("confirm-button").addEventListener("click", () => {                             //digunakan untuk tombol konfirmasi
+      const method = document.querySelector('input[name="payment-method"]:checked').value;                  // digunakan untuk menyimpan metode pembayaran
       localStorage.setItem("paymentMethod", method);
 
       // Simpan data tiket ke buyerData (sederhana)
       const buyerData = {
         name: "Guest",
         ticketCount: ticketCount,
-        ticketCode: "EVTX25-" + Math.random().toString(36).substr(2, 8).toUpperCase()
+        ticketCode: "EVTX25-" + Math.random().toString(36).substr(2, 8).toUpperCase()                       //digunnakan untuk menyimpan data pembeli, dan untuk membuat kode acak/random
       };
       localStorage.setItem("buyerData", JSON.stringify(buyerData));
 
       // Redirect ke halaman e-tiket
-      window.location.href = "tiket.html";
+      window.location.href = "tiket.html";                              //digunakan untuk menuju halaman selanjutnya
     });
   </script>
 </body>
