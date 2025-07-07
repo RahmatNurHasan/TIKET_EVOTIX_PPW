@@ -1649,14 +1649,17 @@
         </div>
     </div>
     <script>
+        // Simpan URL event yang dipilih ke dalam targetHref untuk redirect
         let targetHref = "#"; // default tujuan 
 
+         // Fungsi showConfirm: menampilkan modal konfirmasi
         function showConfirm(button) {
             targetHref = button.getAttribute('data-href');  // default tujuan (klik "pesan sekarang" di halaman masing masing)
             const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
             modal.show();
         }
 
+         // Fungsi redirectToPesan: arahkan ke halaman detail event
         function redirectToPesan() {
             window.location.href = targetHref;
         }
