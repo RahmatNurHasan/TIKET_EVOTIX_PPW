@@ -111,8 +111,8 @@
 </div>
 
 <!-- Script -->
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>  //digunakan untuk menyisipkan library atau pihak ketiga dan pada script ini digunakan untuk membuat QR secara otomatis
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> //digunakan untuk Mengambil data event dari localStorage (sudah disimpan sebelumnya saat user beli tiket). Kalau tidak ada, gunakan data default.
 <script>
   const eventData = JSON.parse(localStorage.getItem("selectedEvent")) || {
     title: "Judul Tidak Ada",
@@ -122,8 +122,8 @@
     image: "poster-default.jpg"
   };
 
-  const ticketCode = "EVT-" + Math.random().toString(36).substr(2, 8).toUpperCase();
-  const verifyCode = Math.random().toString(36).substr(2, 6).toUpperCase();
+  const ticketCode = "EVT-" + Math.random().toString(36).substr(2, 8).toUpperCase(); //toString digunakan untuk mengubah angka menjadi teks dengan sistem bilangan basis (36), dan substr (2,8) digunakan untuk menghilangkan 2 karakter diawal dan mengambil 8 karakter setelahnya
+  const verifyCode = Math.random().toString(36).substr(2, 6).toUpperCase(); //digunakan untuk memberikan kode acak/random dan verifikasi. toUpperCase() digunakan untuk mengubah huruf kecil menjadi besar, supaya terlihat menjadi kode resmi
 
   document.getElementById("event-title").textContent = eventData.title;
   document.getElementById("event-date").textContent = eventData.date;
@@ -132,7 +132,7 @@
   document.getElementById("ticket-code").textContent = ticketCode;
   document.getElementById("verify-code").textContent = verifyCode;
   document.getElementById("poster-img").src = `../img/${eventData.image}`;
-  document.getElementById("print-time").textContent = new Date().toLocaleString("id-ID", {
+  document.getElementById("print-time").textContent = new Date().toLocaleString("id-ID", {  //digunakan untuk menampilkan data event,menuju halaman tiket
     weekday: "long", year: "numeric", month: "long", day: "numeric",
     hour: "2-digit", minute: "2-digit", second: "2-digit"
   });
@@ -140,11 +140,11 @@
   const qrContainer = document.getElementById("qrcode");
   new QRCode(qrContainer, {
     text: ticketCode + "-" + verifyCode,
-    width: 90,
+    width: 90,  //digunakan untuk membuat kode QR otomatis dan isinya adalah gabungan kode tiket + verifikasi. Bisa digunakan untuk scan saat check-in.
     height: 90,
     colorDark: "#000",
     colorLight: "#fff",
-    correctLevel: QRCode.CorrectLevel.H
+    correctLevel: QRCode.CorrectLevel.H  //digunakan untuk mengatur koreksi kesalahan pada QR
   });
 
   // Pastikan QR selesai dirender sebelum buat PDF
@@ -154,7 +154,7 @@
       html2pdf().from(document.getElementById("ticket")).set({
         margin: 10,
         filename: `e-tiket-${ticketCode}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg', quality: 0.98 }, //digunakan untuk mengatur waktu otomatis mengunduh tiket
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).save().then(() => {
@@ -163,12 +163,12 @@
     } else {
       alert("QR Code belum siap. Coba ulangi.");
     }
-  }, 1200);
+  }, 1200);  // waktu tunggu QR Code agar pasti muncul
 
-  document.getElementById("print-btn").addEventListener("click", () => window.print());
+  document.getElementById("print-btn").addEventListener("click", () => window.print()); //ini juga bisa digunakan jika akan mengunduh kembali e-tiket
 
   function toggleDarkMode() {
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark");  //digunakan untuk mengganti mode gelap menjadi terang
   }
 </script>
 </body>
