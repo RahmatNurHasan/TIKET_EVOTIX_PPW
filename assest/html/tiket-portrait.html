@@ -23,12 +23,12 @@
       background: var(--bg);
       color: var(--text);
       border-radius: 12px;
-      margin: 2rem auto;
-      padding: 1rem 1.2rem;
+      margin: 3rem auto;
+      padding: 1.5rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       font-size: 0.92rem;
-      width: 100%;
-      max-width: 500px;
+      max-width: 480px;
+      text-align: center;
     }
     .ticket-logo {
       width: 70px;
@@ -39,7 +39,7 @@
       max-height: 180px;
       object-fit: cover;
       border-radius: 8px;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
     .ticket-container p {
       margin: 2px 0;
@@ -66,17 +66,17 @@
       body * {
         visibility: hidden;
       }
-      .ticket-container, .ticket-container * {
+      #ticket, #ticket * {
         visibility: visible;
       }
-      .ticket-container {
+      #ticket {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        background: #000 !important;
-        color: white !important;
         padding: 1rem;
+        background: #000 !important;
+        color: #fff !important;
       }
     }
   </style>
@@ -147,7 +147,6 @@
     correctLevel: QRCode.CorrectLevel.H
   });
 
-  // Tunggu QR Code benar-benar muncul
   setTimeout(() => {
     const qrReady = qrContainer.querySelector("img") || qrContainer.querySelector("canvas");
     if (qrReady) {
@@ -155,15 +154,15 @@
         margin: 0,
         filename: `e-tiket-${ticketCode}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 3, useCORS: true, allowTaint: true },
+        html2canvas: { scale: 3, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).save().then(() => {
         setTimeout(() => window.print(), 600);
       });
     } else {
-      alert("QR Code belum siap, coba ulangi.");
+      alert("QR Code belum siap. Coba ulangi.");
     }
-  }, 1500); // Tunggu QR code selesai dirender
+  }, 1500);
 
   document.getElementById("print-btn").addEventListener("click", () => window.print());
 
